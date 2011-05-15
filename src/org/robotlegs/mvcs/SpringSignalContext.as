@@ -48,8 +48,8 @@ package org.robotlegs.mvcs
 		
 		public function SpringSignalContext(contextView:DisplayObjectContainer=null, autoStartup:Boolean=true)
 		{
-			super(contextView, autoStartup);
 			_springContext = createSpringContext();
+			super(contextView, autoStartup);
 		}
 		
 		public function get config():Object

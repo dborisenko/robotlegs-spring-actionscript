@@ -1,5 +1,6 @@
 package org.robotlegs.base
 {
+	import org.as3commons.lang.Assert;
 	import org.osflash.signals.ISignal;
 	import org.robotlegs.core.ISignalCommandMap;
 	import org.springextensions.actionscript.context.IApplicationContext;
@@ -32,6 +33,9 @@ package org.robotlegs.base
 		
 		public function SignalCommandMapper(signalOrSignalClass:Object, commandClass:Class, oneShot:Boolean=false)
 		{
+			Assert.notNull(signalOrSignalClass);
+			Assert.notNull(commandClass);
+			
 			if (signalOrSignalClass is ISignal)
 			{
 				this.signal = signalOrSignalClass as ISignal;
@@ -49,7 +53,29 @@ package org.robotlegs.base
 			if (!mapped)
 			{
 				mapped = true;
-				var signalCommandMap:ISignalCommandMap = applicationContext.getObjectsOfType(ISignalCommandMap) as ISignalCommandMap;
+				var signalCommandMap:ISignalCommandMap;
+				var obj:Object = applicationContext.getObjectsOfType(ISignalCommandMap);
+				if (obj is ISignalCommandMap)
+				{
+					signalCommandMap = obj as ISignalCommandMap;
+				}
+				else 
+				{
+					for each (var item:Object in obj)
+					{
+						if (item is ISignalCommandMap)
+						{
+							signalCommandMap = item as ISignalCommandMap;
+							break;
+						}
+					}
+				}
+				
+				if (!signalCommandMap)
+				{
+					throw new Error("Cannot receive object of type [ISignalCommandMap] from context");
+				}
+				
 				if (signal)
 				{
 					signalCommandMap.mapSignal(signal, commandClass, oneShot);
