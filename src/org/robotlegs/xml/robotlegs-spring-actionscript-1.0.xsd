@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema elementFormDefault="qualified"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns="http://www.springactionscript.org/schema/task"
+			targetNamespace="http://www.springactionscript.org/schema/task"
+			xmlns:sas="http://www.springactionscript.org/schema/objects">
+
+	<xs:annotation>
+		<xs:documentation><![CDATA[
+			Robotlegs Spring ActionScript
+			Schema Authors: Denis Borisenko
+			]]>
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:import namespace="http://www.springactionscript.org/schema/objects" />
+	
+	<xs:element name="map-signal" type="mapSignalType"/>
+	
+	<xs:complexType name="mapSignalType" mixed="false">
+		<xs:attribute name="signal-class" type="xs:string" use="optional"/>
+		<xs:attribute name="signal-ref" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="variables"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="command-class" type="xs:string" use="required"/>
+		<xs:attribute name="one-shot" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	
+	<xs:element name="view-class" type="mapViewType"/>
+	
+	<xs:complexType name="mapViewType" mixed="false">
+		<xs:attribute name="view-class" type="xs:string" use="required"/>
+		<xs:attribute name="mediator-class" type="xs:string" use="required"/>
+		<xs:attribute name="inject-view-as" type="xs:string"" use="optional"/>
+		<xs:attribute name="auto-create" type="xs:boolean"" use="optional"/>
+		<xs:attribute name="auto-remove" type="xs:boolean"" use="optional"/>
+	</xs:complexType>
+
+</xs:schema>
