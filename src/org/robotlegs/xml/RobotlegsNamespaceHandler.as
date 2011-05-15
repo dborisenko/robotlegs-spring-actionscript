@@ -1,12 +1,12 @@
 package org.robotlegs.xml
 {
 	import org.as3commons.lang.StringUtils;
-	import org.robotlegs.robotlegs_spring_actionscript;
 	import org.robotlegs.xml.parser.MapSignalNodeParser;
 	import org.springextensions.actionscript.ioc.IObjectDefinition;
 	import org.springextensions.actionscript.ioc.factory.config.RuntimeObjectReference;
 	import org.springextensions.actionscript.ioc.factory.xml.NamespaceHandlerSupport;
 	import org.springextensions.actionscript.ioc.factory.xml.parser.support.XMLObjectDefinitionsParser;
+	import org.robotlegs.robotlegs_spring_actionscript;
 	
 	/**
 	 * 

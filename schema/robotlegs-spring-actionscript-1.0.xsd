@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xs:schema elementFormDefault="qualified"
 			xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns="http://www.springactionscript.org/schema/task"
-			targetNamespace="http://www.springactionscript.org/schema/task"
-			xmlns:sas="http://www.springactionscript.org/schema/objects">
+			xmlns="https://github.com/dborisenko/robotlegs-spring-actionscript/schema"
+			targetNamespace="https://github.com/dborisenko/robotlegs-spring-actionscript/schema">
 
 	<xs:annotation>
 		<xs:documentation><![CDATA[

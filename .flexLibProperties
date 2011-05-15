@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="org.robotlegs.mvcs.SpringSignalContext"/>
     <classEntry path="org.robotlegs.adapters.SpringActionscriptInjector"/>
+    <classEntry path="org.robotlegs.base.MediatorMapper"/>
+    <classEntry path="org.robotlegs.base.SignalCommandMapper"/>
+    <classEntry path="org.robotlegs.mvcs.SpringSignalContext"/>
     <classEntry path="org.robotlegs.xml.RobotlegsElementsPreprocessor"/>
     <classEntry path="org.robotlegs.xml.RobotlegsNamespaceHandler"/>
     <classEntry path="org.robotlegs.xml.parser.MapSignalNodeParser"/>
-    <classEntry path="org.robotlegs.base.SignalCommandMapper"/>
     <classEntry path="org.robotlegs.xml.parser.MapViewNodeParser"/>
-    <classEntry path="org.robotlegs.base.MediatorMapper"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
