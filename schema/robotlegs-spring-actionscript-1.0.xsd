@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xs:schema elementFormDefault="qualified"
 			xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns="https://github.com/dborisenko/robotlegs-spring-actionscript/schema"
-			targetNamespace="https://github.com/dborisenko/robotlegs-spring-actionscript/schema">
+			xmlns="https://github.com/dborisenko/robotlegs-spring-actionscript/raw/master/schema/"
+			targetNamespace="https://github.com/dborisenko/robotlegs-spring-actionscript/raw/master/schema/">
 
 	<xs:annotation>
 		<xs:documentation><![CDATA[
@@ -12,7 +12,7 @@
 		</xs:documentation>
 	</xs:annotation>
 
-	<xs:import namespace="http://www.springactionscript.org/schema/objects" />
+	<xs:import namespace="https://github.com/dborisenko/robotlegs-spring-actionscript/raw/master/schema/" />
 	
 	<xs:element name="map-signal" type="mapSignalType"/>
 	
