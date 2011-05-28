@@ -44,12 +44,6 @@ package org.robotlegs.xml
 			registerObjectDefinitionParser(MAP_VIEW_ELEM, new MapViewNodeParser());
 		}
 		
-		/**
-		 * <p>When invoked for the first time this method will create a <code>TaskElementsPreprocessor</code> and preprocess
-		 * the incoming <code>XML</code>.</p>
-		 * @see org.springextensions.actionscript.core.task.xml.TaskElementsPreprocessor TaskElementsPreprocessor
-		 * @inheritDoc
-		 */
 		override public function parse(node:XML, parser:XMLObjectDefinitionsParser):IObjectDefinition {
 			if (!_preprocessed) {
 				new RobotlegsElementsPreprocessor().preprocess(getRoot(node));
@@ -61,11 +55,6 @@ package org.robotlegs.xml
 			return super.parse(node, parser);
 		}
 		
-		/**
-		 * Returns the root node for the specified <code>XML</code> node by recursively retrieving the parent node.
-		 * @param xml The specified <code>XML</code> node
-		 * @return The root node
-		 */
 		public function getRoot(xml:XML):XML {
 			while (xml.parent() != null) {
 				xml = xml.parent();
