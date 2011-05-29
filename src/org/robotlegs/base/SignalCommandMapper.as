@@ -23,6 +23,7 @@ package org.robotlegs.base
 		public var signalClass:Class;
 		public var commandClass:Class;
 		public var oneShot:Boolean = false;
+		public var startup:Boolean = false;
 		
 		//--------------------------------------------------------------------------
 		//  IApplicationContextAware implementation
@@ -43,7 +44,7 @@ package org.robotlegs.base
 		//  Constructor
 		//--------------------------------------------------------------------------
 		
-		public function SignalCommandMapper(signalOrSignalClass:Object, commandClass:Class, oneShot:Boolean=false)
+		public function SignalCommandMapper(signalOrSignalClass:Object, commandClass:Class, oneShot:Boolean=false, startup:Boolean=false)
 		{
 			Assert.notNull(signalOrSignalClass);
 			Assert.notNull(commandClass);
@@ -58,6 +59,7 @@ package org.robotlegs.base
 			}
 			this.commandClass = commandClass;
 			this.oneShot = oneShot;
+			this.startup = startup;
 		}
 		
 		//--------------------------------------------------------------------------

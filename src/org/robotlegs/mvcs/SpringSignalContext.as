@@ -43,7 +43,7 @@ package org.robotlegs.mvcs
 		//  springContextType
 		//--------------------------------------------------------------------------
 		
-		private var _springContextType:String = SPRING_CONTEXT_TYPE_FLEX;
+		private var _springContextType:String;
 		[Inspectable(enumeration="xml,flex", defaultValue="flex")]
 		public function get springContextType():String
 		{
@@ -64,7 +64,7 @@ package org.robotlegs.mvcs
 		
 		public function SpringSignalContext(contextView:DisplayObjectContainer=null, autoStartup:Boolean=true)
 		{
-			_springContext = createSpringContext();
+			springContextType = SPRING_CONTEXT_TYPE_FLEX;
 			super(contextView, autoStartup);
 		}
 		
@@ -144,7 +144,7 @@ package org.robotlegs.mvcs
 			}
 			else
 			{
-				super.startup();
+				doStartup();
 			}
 		}
 		
@@ -179,6 +179,11 @@ package org.robotlegs.mvcs
 			return context;
 		}
 		
+		protected function doStartup():void
+		{
+			super.startup();
+		}
+		
 		//--------------------------------------------------------------------------
 		//  Event Handlers
 		//--------------------------------------------------------------------------
@@ -186,7 +191,7 @@ package org.robotlegs.mvcs
 		protected function onApplicationConfigLoaded(event:Event):void
 		{
 			_springContext.removeEventListener(Event.COMPLETE, onApplicationConfigLoaded);
-			super.startup();
+			doStartup();
 		}
 	}
 }

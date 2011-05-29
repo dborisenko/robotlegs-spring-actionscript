@@ -42,6 +42,7 @@ package org.robotlegs.xml
 		public static const SIGNAL_REF_ATTR:String = "signal-ref";
 		public static const COMMAND_CLASS_ATTR:String = "command-class";
 		public static const ONE_SHOT_ATTR:String = "one-shot";
+		public static const STARTUP_ATTR:String = "startup";
 		
 		public static const MAP_VIEW_ELEM:String = "map-view";
 		

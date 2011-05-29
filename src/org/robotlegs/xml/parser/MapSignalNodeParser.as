@@ -32,26 +32,33 @@ package org.robotlegs.xml.parser
 			builder.objectDefinition.isLazyInit = false;
 			builder.objectDefinition.dependsOn = context.applicationContext.getObjectNamesForType(ISignalCommandMap);
 			
+			var signalOrSignalClass:Object;
 			var signalRef:RuntimeObjectReference = RobotlegsNamespaceHandler.refOrNull(node, RobotlegsNamespaceHandler.SIGNAL_REF_ATTR);
 			if (signalRef)
 			{
-				builder.addConstructorArgValue(signalRef);
+				signalOrSignalClass = signalRef;
 			}
 			else
 			{
 				var signalClassName:String = node.attribute(RobotlegsNamespaceHandler.SIGNAL_CLASS_ATTR);
-				Assert.hasText(signalClassName);
 				var signalClass:Class = ClassUtils.forName(signalClassName);
-				builder.addConstructorArgValue(signalClass);
+				signalOrSignalClass = signalClass;
 			}
+			builder.addConstructorArgValue(signalOrSignalClass);
 			
+			var commandClass:Class;
 			var commandClassName:String = node.attribute(RobotlegsNamespaceHandler.COMMAND_CLASS_ATTR);
-			Assert.hasText(commandClassName, "Attribute command-class is required");
-			var commandClass:Class = ClassUtils.forName(commandClassName);
+			if (commandClassName)
+			{
+				commandClass = ClassUtils.forName(commandClassName);
+			}
 			builder.addConstructorArgValue(commandClass);
 			
 			var oneShot:Boolean = (node.attribute(RobotlegsNamespaceHandler.ONE_SHOT_ATTR).text().toString() == "true");
 			builder.addConstructorArgValue(oneShot);
+			
+			var startup:Boolean = (node.attribute(RobotlegsNamespaceHandler.STARTUP_ATTR).text().toString() == "true");
+			builder.addConstructorArgValue(startup);
 			
 			return builder.objectDefinition;
 		}
