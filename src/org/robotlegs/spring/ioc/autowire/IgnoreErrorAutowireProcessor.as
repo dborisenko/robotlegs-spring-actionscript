@@ -29,7 +29,9 @@ package org.robotlegs.spring.ioc.autowire
 			}
 			catch (err:Error)
 			{
-				logger.warn("Error while autowiring property {1} of object {0}: " + err.message, field.name, objectName);
+				var msg:String = err.message.toString();
+				msg = msg.substr(0, msg.indexOf("\n"));
+				logger.debug("Error while autowiring property {1} of object {0}: " + msg , field.name, objectName);
 			}
 		}
 	}
