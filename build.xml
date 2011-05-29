@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="robotlegs-spring-actionscript" default="build lib">
+ 
+	<property file="build.properties"/>
+	
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="${basedir}/../antcommon/libs/ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
+	
+	<!-- ================================= 
+          target: init                     
+         ================================= -->
+	<target name="init">
+		<property name="deploy.name" value="${project.name}-${project.version}"/>
+		<echo>${deploy.name}</echo>
+	</target>
+	
+	<!-- ================================= 
+          target: build lib                
+         ================================= -->
+    <target name="build lib" depends="init">
+		<compc output="bin/${deploy.name}.swc" 
+			allow-source-path-overlap="true">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+			
+	        <source-path path-element="${FLEX_HOME}/frameworks"/>
+			<source-path path-element="${basedir}/src"/>
+			
+			<include-sources dir="${basedir}/src" includes="*" />
+
+			<compiler.library-path dir="${basedir}/" append="true">
+                <include name="libs"/>
+            </compiler.library-path>
+			
+			<external-library-path dir="${FLEX_HOME}/frameworks/libs">
+				<include name="**/*.swc"/>
+			</external-library-path>
+			
+		</compc>
+    </target>
+	
+</project>
