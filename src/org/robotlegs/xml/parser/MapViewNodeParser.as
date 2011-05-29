@@ -2,6 +2,7 @@ package org.robotlegs.xml.parser
 {
 	import org.as3commons.lang.Assert;
 	import org.as3commons.lang.ClassUtils;
+	import org.as3commons.lang.StringUtils;
 	import org.robotlegs.base.MediatorMapper;
 	import org.robotlegs.core.IMediatorMap;
 	import org.robotlegs.xml.RobotlegsNamespaceHandler;
@@ -35,7 +36,12 @@ package org.robotlegs.xml.parser
 			builder.addConstructorArgValue(ClassUtils.forName(mediatorClass));
 			
 			var injectViewAs:String = node.attribute(RobotlegsNamespaceHandler.INJECT_VIEW_AS_ATTR);
-			builder.addConstructorArgValue(ClassUtils.forName(injectViewAs));
+			var injectViewAsClass:Class;
+			if (StringUtils.hasText(injectViewAs))
+			{
+				injectViewAsClass = ClassUtils.forName(injectViewAs);
+			}
+			builder.addConstructorArgValue(injectViewAsClass);
 			
 			var autoCreate:Boolean = (node.attribute(RobotlegsNamespaceHandler.AUTO_CREATE_ATTR).text().toString() == "true");
 			builder.addConstructorArgValue(autoCreate);

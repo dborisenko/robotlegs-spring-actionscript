@@ -2,6 +2,7 @@ package org.robotlegs.base
 {
 	import org.as3commons.lang.Assert;
 	import org.osflash.signals.ISignal;
+	import org.robotlegs.core.IInjector;
 	import org.robotlegs.core.ISignalCommandMap;
 	import org.springextensions.actionscript.context.IApplicationContext;
 	import org.springextensions.actionscript.context.IApplicationContextAware;
@@ -46,9 +47,6 @@ package org.robotlegs.base
 		
 		public function SignalCommandMapper(signalOrSignalClass:Object, commandClass:Class, oneShot:Boolean=false, startup:Boolean=false)
 		{
-			Assert.notNull(signalOrSignalClass);
-			Assert.notNull(commandClass);
-			
 			if (signalOrSignalClass is ISignal)
 			{
 				this.signal = signalOrSignalClass as ISignal;
@@ -66,41 +64,58 @@ package org.robotlegs.base
 		//  map
 		//--------------------------------------------------------------------------
 		
+		protected function getObjectFromContext(clazz:Class):Object
+		{
+			var result:Object;
+			var obj:Object = applicationContext.getObjectsOfType(clazz);
+			if (obj is clazz)
+			{
+				result = obj;
+			}
+			else 
+			{
+				for each (var item:Object in obj)
+				{
+					if (item is clazz)
+					{
+						result = item;
+						break;
+					}
+				}
+			}
+			return result;
+		}
+		
 		protected function map():void
 		{
 			if (!mapped)
 			{
 				mapped = true;
-				var signalCommandMap:ISignalCommandMap;
-				var obj:Object = applicationContext.getObjectsOfType(ISignalCommandMap);
-				if (obj is ISignalCommandMap)
-				{
-					signalCommandMap = obj as ISignalCommandMap;
-				}
-				else 
-				{
-					for each (var item:Object in obj)
-					{
-						if (item is ISignalCommandMap)
-						{
-							signalCommandMap = item as ISignalCommandMap;
-							break;
-						}
-					}
-				}
+				var signalCommandMap:ISignalCommandMap = getObjectFromContext(ISignalCommandMap) as ISignalCommandMap;
+				var injector:IInjector = getObjectFromContext(IInjector) as IInjector;
 				
 				if (!signalCommandMap)
 				{
 					throw new Error("Cannot receive object of type [ISignalCommandMap] from context");
 				}
 				
-				if (signal)
+				if (commandClass)
 				{
-					signalCommandMap.mapSignal(signal, commandClass, oneShot);
+					if (signal)
+					{
+						signalCommandMap.mapSignal(signal, commandClass, oneShot);
+					}
+					else if (signalClass)
+					{
+						signalCommandMap.mapSignalClass(signalClass, commandClass, oneShot);
+					}
 				}
-				else if (signalClass)
+				else
 				{
-					signalCommandMap.mapSignalClass(signalClass, commandClass, oneShot);
+					if (signalClass)
+					{
+						injector.mapSingleton(signalClass);
+					}
 				}
 			}
 		}

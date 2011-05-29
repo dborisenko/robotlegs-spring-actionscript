@@ -82,7 +82,7 @@ package org.robotlegs.adapters
 		
 		public function injectInto(target:Object):void
 		{
-			springContext.wire(target);
+//			springContext.wire(target);
 		}
 		
 		//--------------------------------------------------------------------------
