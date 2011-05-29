@@ -10,7 +10,7 @@ package org.robotlegs.base
 	 * @author Denis Borisenko
 	 * 
 	 */
-	public class MediatorMapper implements IApplicationContextAware
+	public class MediatorMapper implements IContextMapper
 	{
 		//--------------------------------------------------------------------------
 		//  Variables
@@ -60,7 +60,7 @@ package org.robotlegs.base
 		//  map
 		//--------------------------------------------------------------------------
 		
-		protected function map():void
+		public function map():void
 		{
 			if (!mapped)
 			{

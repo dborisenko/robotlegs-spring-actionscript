@@ -6,6 +6,9 @@ package org.robotlegs.adapters
 	import flash.utils.getQualifiedClassName;
 	
 	import org.as3commons.lang.ClassUtils;
+	import org.as3commons.lang.StringUtils;
+	import org.as3commons.logging.ILogger;
+	import org.as3commons.logging.LoggerFactory;
 	import org.robotlegs.core.IInjector;
 	import org.springextensions.actionscript.context.support.AbstractApplicationContext;
 	import org.springextensions.actionscript.context.support.XMLApplicationContext;
@@ -14,6 +17,7 @@ package org.robotlegs.adapters
 	import org.springextensions.actionscript.ioc.ObjectDefinitionScope;
 	import org.springextensions.actionscript.ioc.factory.support.AbstractObjectFactory;
 	import org.springextensions.actionscript.ioc.factory.support.IObjectDefinitionRegistry;
+	import org.springextensions.actionscript.ioc.factory.support.ObjectDefinitionBuilder;
 	
 	/**
 	 * 
@@ -22,6 +26,12 @@ package org.robotlegs.adapters
 	 */
 	public class SpringActionscriptInjector implements IInjector
 	{
+		//--------------------------------------------------------------------------
+		//  Logger
+		//--------------------------------------------------------------------------
+		
+		protected var logger:ILogger = LoggerFactory.getClassLogger(SpringActionscriptInjector);
+		
 		//--------------------------------------------------------------------------
 		//  Variables
 		//--------------------------------------------------------------------------
@@ -45,7 +55,9 @@ package org.robotlegs.adapters
 		{
 			if (useValue)
 			{
-				springContext.registerSingleton(getName(whenAskedFor, named), useValue);
+				var name:String = getName(whenAskedFor, named);
+				springContext.registerSingleton(name, useValue);
+				logger.debug("mapping value (registerSingleton) [{0}]", name);
 			}
 			return null;
 		}
@@ -54,7 +66,9 @@ package org.robotlegs.adapters
 		{
 			var def:IObjectDefinition = createObjectDefinitionForClass(instantiateClass);
 			def.scope = ObjectDefinitionScope.PROTOTYPE;
-			springContext.registerObjectDefinition(getName(whenAskedFor, named), def);
+			var name:String = getName(whenAskedFor, named);
+			springContext.registerObjectDefinition(name, def);
+			logger.debug("mapping class (registerObjectDefinition) [{0}]", name);
 			return null;
 		}
 		
@@ -65,9 +79,13 @@ package org.robotlegs.adapters
 		
 		public function mapSingletonOf(whenAskedFor:Class, useSingletonOf:Class, named:String=""):*
 		{
-			var def:IObjectDefinition = createObjectDefinitionForClass(useSingletonOf);
-			def.scope = ObjectDefinitionScope.SINGLETON;
-			springContext.registerObjectDefinition(getName(whenAskedFor, named), def);
+			var name:String = getName(whenAskedFor, named);
+			springContext.registerSingleton(name, instantiate(useSingletonOf));
+			logger.debug("mapping singleton (registerSingleton) [{0}]", name);
+			
+//			var def:IObjectDefinition = createObjectDefinitionForClass(useSingletonOf);
+//			def.scope = ObjectDefinitionScope.SINGLETON;
+//			springContext.registerObjectDefinition(getName(whenAskedFor, named), def);
 			return null;
 		}
 		
@@ -82,7 +100,7 @@ package org.robotlegs.adapters
 		
 		public function injectInto(target:Object):void
 		{
-//			springContext.wire(target);
+			springContext.wire(target);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -92,7 +110,7 @@ package org.robotlegs.adapters
 		public function instantiate(clazz:Class):*
 		{
 			var instance:Object = ClassUtils.newInstance(clazz);
-			injectInto(instance);
+//			injectInto(instance);
 			return instance;
 		}
 		
@@ -105,6 +123,7 @@ package org.robotlegs.adapters
 		{
 			var context:AbstractApplicationContext = new XMLApplicationContext();
 			context.parent = springContext;
+			context.registerSingleton(getName(IInjector), this);
 			var injector:SpringActionscriptInjector = new SpringActionscriptInjector(context);
 			return injector;
 		}
@@ -120,7 +139,8 @@ package org.robotlegs.adapters
 		
 		public function hasMapping(clazz:Class, named:String=""):Boolean
 		{
-			return springContext.containsObject(getName(clazz, named));
+			var obj:Object = springContext.getObject(getName(clazz, named));
+			return (obj != null);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -144,12 +164,13 @@ package org.robotlegs.adapters
 		protected function getName(whenAskedFor:Class, named:String = ""):String
 		{
 			var requestName:String = getQualifiedClassName(whenAskedFor);
-			return requestName + '#' + named;
+			return requestName + (StringUtils.hasText(named) ? ('#' + named) : "");
 		}
 		
 		protected function createObjectDefinitionForClass(clazz:Class):IObjectDefinition 
 		{
-			return new ObjectDefinition(ClassUtils.getFullyQualifiedName(clazz, true));
+			var builder:ObjectDefinitionBuilder = ObjectDefinitionBuilder.objectDefinitionForClass(clazz);
+			return builder.objectDefinition;
 		}
 	}
 }

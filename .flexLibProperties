@@ -9,6 +9,8 @@
     <classEntry path="org.robotlegs.xml.RobotlegsNamespaceHandler"/>
     <classEntry path="org.robotlegs.xml.parser.MapSignalNodeParser"/>
     <classEntry path="org.robotlegs.xml.parser.MapViewNodeParser"/>
+    <classEntry path="org.robotlegs.base.IContextMapper"/>
+    <classEntry path="org.robotlegs.xml.parser.AbstractMapperNodeParser"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

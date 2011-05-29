@@ -1,6 +1,8 @@
 package org.robotlegs.base
 {
 	import org.as3commons.lang.Assert;
+	import org.as3commons.logging.ILogger;
+	import org.as3commons.logging.LoggerFactory;
 	import org.osflash.signals.ISignal;
 	import org.robotlegs.core.IInjector;
 	import org.robotlegs.core.ISignalCommandMap;
@@ -12,8 +14,14 @@ package org.robotlegs.base
 	 * @author Denis Borisenko
 	 * 
 	 */
-	public class SignalCommandMapper implements IApplicationContextAware
+	public class SignalCommandMapper implements IContextMapper
 	{
+		//--------------------------------------------------------------------------
+		//  Logger
+		//--------------------------------------------------------------------------
+		
+		protected var logger:ILogger = LoggerFactory.getClassLogger(SignalCommandMapper);
+		
 		//--------------------------------------------------------------------------
 		//  Variables
 		//--------------------------------------------------------------------------
@@ -47,6 +55,8 @@ package org.robotlegs.base
 		
 		public function SignalCommandMapper(signalOrSignalClass:Object, commandClass:Class, oneShot:Boolean=false, startup:Boolean=false)
 		{
+			logger.debug("mapping signal [{0}] and command [{1}]", signalOrSignalClass, commandClass);
+			
 			if (signalOrSignalClass is ISignal)
 			{
 				this.signal = signalOrSignalClass as ISignal;
@@ -86,7 +96,7 @@ package org.robotlegs.base
 			return result;
 		}
 		
-		protected function map():void
+		public function map():void
 		{
 			if (!mapped)
 			{
