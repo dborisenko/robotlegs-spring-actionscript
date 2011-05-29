@@ -13,13 +13,21 @@ package org.robotlegs.base
 	 */
 	public class SignalCommandMapper implements IApplicationContextAware
 	{
+		//--------------------------------------------------------------------------
+		//  Variables
+		//--------------------------------------------------------------------------
+		
 		protected var mapped:Boolean = false;
 		
 		public var signal:ISignal;
 		public var signalClass:Class;
 		public var commandClass:Class;
-		public var oneShot:Boolean = false
-
+		public var oneShot:Boolean = false;
+		
+		//--------------------------------------------------------------------------
+		//  IApplicationContextAware implementation
+		//--------------------------------------------------------------------------
+			
 		private var _applicationContext:IApplicationContext;
 		public function get applicationContext():IApplicationContext
 		{
@@ -30,6 +38,10 @@ package org.robotlegs.base
 			_applicationContext = value;
 			map();
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Constructor
+		//--------------------------------------------------------------------------
 		
 		public function SignalCommandMapper(signalOrSignalClass:Object, commandClass:Class, oneShot:Boolean=false)
 		{
@@ -47,6 +59,10 @@ package org.robotlegs.base
 			this.commandClass = commandClass;
 			this.oneShot = oneShot;
 		}
+		
+		//--------------------------------------------------------------------------
+		//  map
+		//--------------------------------------------------------------------------
 		
 		protected function map():void
 		{

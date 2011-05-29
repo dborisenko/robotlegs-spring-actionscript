@@ -16,13 +16,25 @@ package org.robotlegs.xml
 	 */
 	public class RobotlegsNamespaceHandler extends NamespaceHandlerSupport
 	{
+		//--------------------------------------------------------------------------
+		//  Constructor
+		//--------------------------------------------------------------------------
+		
 		public function RobotlegsNamespaceHandler()
 		{
 			super(robotlegs_spring_actionscript);
 			init();
 		}
 		
+		//--------------------------------------------------------------------------
+		//  Variables
+		//--------------------------------------------------------------------------
+		
 		private var _preprocessed:Boolean = false;
+		
+		//--------------------------------------------------------------------------
+		//  Constants
+		//--------------------------------------------------------------------------
 		
 		public static const MAP_SIGNAL_ELEM:String = "map-signal";
 		
@@ -39,12 +51,22 @@ package org.robotlegs.xml
 		public static const AUTO_CREATE_ATTR:String = "auto-create";
 		public static const AUTO_REMOVE_ATTR:String = "auto-remove";
 
-		protected function init():void {
+		//--------------------------------------------------------------------------
+		//  Initialize method
+		//--------------------------------------------------------------------------
+		
+		protected function init():void 
+		{
 			registerObjectDefinitionParser(MAP_SIGNAL_ELEM, new MapSignalNodeParser());
 			registerObjectDefinitionParser(MAP_VIEW_ELEM, new MapViewNodeParser());
 		}
 		
-		override public function parse(node:XML, parser:XMLObjectDefinitionsParser):IObjectDefinition {
+		//--------------------------------------------------------------------------
+		//  Methods
+		//--------------------------------------------------------------------------
+		
+		override public function parse(node:XML, parser:XMLObjectDefinitionsParser):IObjectDefinition 
+		{
 			if (!_preprocessed) {
 				new RobotlegsElementsPreprocessor().preprocess(getRoot(node));
 				_preprocessed = true;
@@ -55,14 +77,16 @@ package org.robotlegs.xml
 			return super.parse(node, parser);
 		}
 		
-		public function getRoot(xml:XML):XML {
+		public function getRoot(xml:XML):XML 
+		{
 			while (xml.parent() != null) {
 				xml = xml.parent();
 			}
 			return xml;
 		}
 		
-		public static function refOrNull(node:XML, attributeName:String):RuntimeObjectReference {
+		public static function refOrNull(node:XML, attributeName:String):RuntimeObjectReference 
+		{
 			var attr:String = node.attribute(attributeName);
 			if (StringUtils.hasText(attr)) {
 				return new RuntimeObjectReference(attr);

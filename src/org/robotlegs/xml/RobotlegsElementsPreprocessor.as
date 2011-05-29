@@ -13,17 +13,33 @@ package org.robotlegs.xml
 	 */
 	public class RobotlegsElementsPreprocessor implements IXMLObjectDefinitionsPreprocessor
 	{
+		//--------------------------------------------------------------------------
+		//  Variables
+		//--------------------------------------------------------------------------
+		
 		private var _nodeFunctions:Dictionary;
+		
+		//--------------------------------------------------------------------------
+		//  Constructor
+		//--------------------------------------------------------------------------
 		
 		public function RobotlegsElementsPreprocessor()
 		{
 			init();
 		}
 		
+		//--------------------------------------------------------------------------
+		//  Initialize method
+		//--------------------------------------------------------------------------
+		
 		protected function init():void {
 			_nodeFunctions = new Dictionary();
 			_nodeFunctions[RobotlegsNamespaceHandler.MAP_SIGNAL_ELEM] = preprocessMapSignalElement;
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Methods
+		//--------------------------------------------------------------------------
 		
 		public function preprocess(xml:XML):XML {
 			var objectNodes:XMLList = xml.descendants();

@@ -24,12 +24,24 @@ package org.robotlegs.mvcs
 	 */
 	public class SpringSignalContext extends SignalContext
 	{
+		//--------------------------------------------------------------------------
+		//  Constaints
+		//--------------------------------------------------------------------------
+		
 		public static const SPRING_CONTEXT_TYPE_XML:String = "xml";
 		public static const SPRING_CONTEXT_TYPE_FLEX:String = "flex";
+		
+		//--------------------------------------------------------------------------
+		//  Variables
+		//--------------------------------------------------------------------------
 		
 		protected var _springContext:XMLApplicationContext;
 		protected var _configs:ArrayCollection = new ArrayCollection();
 		protected var _isConfigurable:Boolean = false;
+		
+		//--------------------------------------------------------------------------
+		//  springContextType
+		//--------------------------------------------------------------------------
 		
 		private var _springContextType:String = SPRING_CONTEXT_TYPE_FLEX;
 		[Inspectable(enumeration="xml,flex", defaultValue="flex")]
@@ -46,11 +58,19 @@ package org.robotlegs.mvcs
 			addConfig(_configs);
 		}
 		
+		//--------------------------------------------------------------------------
+		//  Constructor
+		//--------------------------------------------------------------------------
+		
 		public function SpringSignalContext(contextView:DisplayObjectContainer=null, autoStartup:Boolean=true)
 		{
 			_springContext = createSpringContext();
 			super(contextView, autoStartup);
 		}
+		
+		//--------------------------------------------------------------------------
+		//  config
+		//--------------------------------------------------------------------------
 		
 		public function get config():Object
 		{
@@ -69,6 +89,10 @@ package org.robotlegs.mvcs
 			_configs.addItem(value);
 			addConfig(value);
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Public methods
+		//--------------------------------------------------------------------------
 		
 		public function addConfig(config:Object):void
 		{
@@ -107,16 +131,9 @@ package org.robotlegs.mvcs
 			}
 		}
 		
-		protected function get springContext():XMLApplicationContext
-		{
-			return _springContext;
-		}
-		
-		protected function onApplicationConfigLoaded(event:Event):void
-		{
-			_springContext.removeEventListener(Event.COMPLETE, onApplicationConfigLoaded);
-			super.startup();
-		}
+		//--------------------------------------------------------------------------
+		//  Overriden methods
+		//--------------------------------------------------------------------------
 		
 		override public function startup():void
 		{
@@ -138,6 +155,15 @@ package org.robotlegs.mvcs
 			return injector;
 		}
 		
+		//--------------------------------------------------------------------------
+		//  Protected methods and properties
+		//--------------------------------------------------------------------------
+		
+		protected function get springContext():XMLApplicationContext
+		{
+			return _springContext;
+		}
+		
 		protected function createSpringContext():XMLApplicationContext
 		{
 			var context:XMLApplicationContext;
@@ -151,6 +177,16 @@ package org.robotlegs.mvcs
 			}
 			context.addNamespaceHandler(new RobotlegsNamespaceHandler());
 			return context;
+		}
+		
+		//--------------------------------------------------------------------------
+		//  Event Handlers
+		//--------------------------------------------------------------------------
+		
+		protected function onApplicationConfigLoaded(event:Event):void
+		{
+			_springContext.removeEventListener(Event.COMPLETE, onApplicationConfigLoaded);
+			super.startup();
 		}
 	}
 }

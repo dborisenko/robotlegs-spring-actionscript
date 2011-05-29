@@ -12,6 +12,10 @@ package org.robotlegs.base
 	 */
 	public class MediatorMapper implements IApplicationContextAware
 	{
+		//--------------------------------------------------------------------------
+		//  Variables
+		//--------------------------------------------------------------------------
+		
 		protected var mapped:Boolean = false;
 		
 		public var viewClass:Object;
@@ -19,6 +23,10 @@ package org.robotlegs.base
 		public var injectViewAs:Object;
 		public var autoCreate:Boolean = true;
 		public var autoRemove:Boolean = true;
+		
+		//--------------------------------------------------------------------------
+		//  IApplicationContextAware implementation
+		//--------------------------------------------------------------------------
 		
 		private var _applicationContext:IApplicationContext;
 		public function get applicationContext():IApplicationContext
@@ -30,6 +38,10 @@ package org.robotlegs.base
 			_applicationContext = value;
 			map();
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Constructor
+		//--------------------------------------------------------------------------
 		
 		public function MediatorMapper(viewClass:Object, mediatorClass:Class, 
 									   injectViewAs:Object = null, autoCreate:Boolean = true, autoRemove:Boolean = true)
@@ -43,6 +55,10 @@ package org.robotlegs.base
 			this.autoCreate = autoCreate;
 			this.autoRemove = autoRemove;
 		}
+		
+		//--------------------------------------------------------------------------
+		//  map
+		//--------------------------------------------------------------------------
 		
 		protected function map():void
 		{

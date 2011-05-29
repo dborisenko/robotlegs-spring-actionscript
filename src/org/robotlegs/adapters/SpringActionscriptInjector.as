@@ -22,12 +22,24 @@ package org.robotlegs.adapters
 	 */
 	public class SpringActionscriptInjector implements IInjector
 	{
+		//--------------------------------------------------------------------------
+		//  Variables
+		//--------------------------------------------------------------------------
+		
 		protected var springContext:AbstractApplicationContext;
+		
+		//--------------------------------------------------------------------------
+		//  Constructor
+		//--------------------------------------------------------------------------
 		
 		public function SpringActionscriptInjector(springContext:AbstractApplicationContext)
 		{
 			this.springContext = springContext;
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Map methods
+		//--------------------------------------------------------------------------
 		
 		public function mapValue(whenAskedFor:Class, useValue:Object, named:String=""):*
 		{
@@ -64,10 +76,18 @@ package org.robotlegs.adapters
 			throw new IllegalOperationError("Method is not supported");
 		}
 		
+		//--------------------------------------------------------------------------
+		//  Inject method
+		//--------------------------------------------------------------------------
+		
 		public function injectInto(target:Object):void
 		{
 			springContext.wire(target);
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Instance methods
+		//--------------------------------------------------------------------------
 		
 		public function instantiate(clazz:Class):*
 		{
@@ -89,6 +109,10 @@ package org.robotlegs.adapters
 			return injector;
 		}
 		
+		//--------------------------------------------------------------------------
+		//  Mapping methods
+		//--------------------------------------------------------------------------
+		
 		public function unmap(clazz:Class, named:String=""):void
 		{
 			springContext.removeObjectDefinition(getName(clazz, named));
@@ -99,6 +123,10 @@ package org.robotlegs.adapters
 			return springContext.containsObject(getName(clazz, named));
 		}
 		
+		//--------------------------------------------------------------------------
+		//  applicationDomain
+		//--------------------------------------------------------------------------
+		
 		public function get applicationDomain():ApplicationDomain
 		{
 			return springContext.applicationDomain;
@@ -108,6 +136,10 @@ package org.robotlegs.adapters
 		{
 			springContext.applicationDomain = value;
 		}
+		
+		//--------------------------------------------------------------------------
+		//  Protected methods
+		//--------------------------------------------------------------------------
 		
 		protected function getName(whenAskedFor:Class, named:String = ""):String
 		{
