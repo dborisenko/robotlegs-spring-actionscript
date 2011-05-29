@@ -1,12 +1,12 @@
-package org.robotlegs.xml.parser
+package org.robotlegs.spring.ioc.xml.factory.parser
 {
 	import org.as3commons.lang.Assert;
 	import org.as3commons.lang.ClassUtils;
 	import org.as3commons.lang.StringUtils;
-	import org.robotlegs.base.IContextMapper;
-	import org.robotlegs.base.MediatorMapper;
+	import org.robotlegs.spring.mapper.AbstractContextMapper;
+	import org.robotlegs.spring.mapper.MediatorMapper;
 	import org.robotlegs.core.IMediatorMap;
-	import org.robotlegs.xml.RobotlegsNamespaceHandler;
+	import org.robotlegs.spring.ioc.xml.factory.RobotlegsNamespaceHandler;
 	import org.springextensions.actionscript.ioc.IObjectDefinition;
 	import org.springextensions.actionscript.ioc.factory.support.ObjectDefinitionBuilder;
 	import org.springextensions.actionscript.ioc.factory.xml.AbstractObjectDefinitionParser;
@@ -23,7 +23,7 @@ package org.robotlegs.xml.parser
 		{
 		}
 		
-		override protected function buildMapper(node:XML, context:XMLObjectDefinitionsParser):IContextMapper
+		override protected function buildMapper(node:XML, context:XMLObjectDefinitionsParser):AbstractContextMapper
 		{
 			var viewClass:String = node.attribute(RobotlegsNamespaceHandler.VIEW_CLASS_ATTR);
 			Assert.hasText(viewClass);
@@ -38,9 +38,9 @@ package org.robotlegs.xml.parser
 				injectViewAsClass = ClassUtils.forName(injectViewAs);
 			}
 			
-			var autoCreate:Boolean = (node.attribute(RobotlegsNamespaceHandler.AUTO_CREATE_ATTR).text().toString() == "true");
+			var autoCreate:Boolean = (node.attribute(RobotlegsNamespaceHandler.AUTO_CREATE_ATTR).text().toString() != "false");
 			
-			var autoRemove:Boolean = (node.attribute(RobotlegsNamespaceHandler.AUTO_REMOVE_ATTR).text().toString() == "true");
+			var autoRemove:Boolean = (node.attribute(RobotlegsNamespaceHandler.AUTO_REMOVE_ATTR).text().toString() != "false");
 			
 			return new MediatorMapper(ClassUtils.forName(viewClass), ClassUtils.forName(mediatorClass), injectViewAsClass, autoCreate, autoRemove);
 		}

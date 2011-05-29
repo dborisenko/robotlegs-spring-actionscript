@@ -1,4 +1,4 @@
-package org.robotlegs.base
+package org.robotlegs.spring.mapper
 {
 	import org.as3commons.lang.Assert;
 	import org.robotlegs.core.IMediatorMap;
@@ -10,7 +10,7 @@ package org.robotlegs.base
 	 * @author Denis Borisenko
 	 * 
 	 */
-	public class MediatorMapper implements IContextMapper
+	public class MediatorMapper extends AbstractContextMapper
 	{
 		//--------------------------------------------------------------------------
 		//  Variables
@@ -23,21 +23,6 @@ package org.robotlegs.base
 		public var injectViewAs:Object;
 		public var autoCreate:Boolean = true;
 		public var autoRemove:Boolean = true;
-		
-		//--------------------------------------------------------------------------
-		//  IApplicationContextAware implementation
-		//--------------------------------------------------------------------------
-		
-		private var _applicationContext:IApplicationContext;
-		public function get applicationContext():IApplicationContext
-		{
-			return _applicationContext;
-		}
-		public function set applicationContext(value:IApplicationContext):void
-		{
-			_applicationContext = value;
-			map();
-		}
 		
 		//--------------------------------------------------------------------------
 		//  Constructor
@@ -60,32 +45,16 @@ package org.robotlegs.base
 		//  map
 		//--------------------------------------------------------------------------
 		
-		public function map():void
+		override public function map():void
 		{
 			if (!mapped)
 			{
 				mapped = true;
-				var mediatorMap:IMediatorMap;
-				var obj:Object = applicationContext.getObjectsOfType(IMediatorMap);
-				if (obj is IMediatorMap)
-				{
-					mediatorMap = obj as IMediatorMap;
-				}
-				else 
-				{
-					for each (var item:Object in obj)
-					{
-						if (item is IMediatorMap)
-						{
-							mediatorMap = item as IMediatorMap;
-							break;
-						}
-					}
-				}
+				var mediatorMap:IMediatorMap = getObjectFromContext(IMediatorMap) as IMediatorMap;
 				
 				if (!mediatorMap)
 				{
-					throw new Error("Cannot receive object of type [ISignalCommandMap] from context");
+					throw new Error("Cannot receive object of type [IMediatorMap] from context");
 				}
 				
 				mediatorMap.mapView(viewClass, mediatorClass, injectViewAs, autoCreate, autoRemove);

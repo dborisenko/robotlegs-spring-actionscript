@@ -1,4 +1,4 @@
-package org.robotlegs.xml
+package org.robotlegs.spring.ioc.xml.factory
 {
 	import flash.utils.Dictionary;
 	

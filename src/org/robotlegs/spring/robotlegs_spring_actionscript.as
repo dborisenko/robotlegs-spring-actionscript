@@ -1,4 +1,4 @@
-package org.robotlegs 
+package org.robotlegs.spring 
 {
 	/**
  	 * @author Denis Borisenko

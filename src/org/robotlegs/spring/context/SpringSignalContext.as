@@ -1,4 +1,4 @@
-package org.robotlegs.mvcs
+package org.robotlegs.spring.context
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
@@ -6,9 +6,10 @@ package org.robotlegs.mvcs
 	import mx.collections.ArrayCollection;
 	import mx.utils.StringUtil;
 	
-	import org.robotlegs.adapters.SpringActionscriptInjector;
+	import org.robotlegs.spring.injector.SpringActionscriptInjector;
 	import org.robotlegs.core.IInjector;
-	import org.robotlegs.xml.RobotlegsNamespaceHandler;
+	import org.robotlegs.spring.ioc.autowire.IgnoreErrorAutowireProcessor;
+	import org.robotlegs.spring.ioc.xml.factory.RobotlegsNamespaceHandler;
 	import org.springextensions.actionscript.context.IConfigurableApplicationContext;
 	import org.springextensions.actionscript.context.support.AbstractApplicationContext;
 	import org.springextensions.actionscript.context.support.FlexXMLApplicationContext;
@@ -16,6 +17,7 @@ package org.robotlegs.mvcs
 	import org.springextensions.actionscript.context.support.XMLApplicationContext;
 	
 	import spark.components.mediaClasses.VolumeBar;
+	import org.robotlegs.mvcs.SignalContext;
 	
 	/**
 	 * 
@@ -176,6 +178,7 @@ package org.robotlegs.mvcs
 					context = new FlexXMLApplicationContext();
 			}
 			context.addNamespaceHandler(new RobotlegsNamespaceHandler());
+			context.autowireProcessor = new IgnoreErrorAutowireProcessor(context);
 			return context;
 		}
 		

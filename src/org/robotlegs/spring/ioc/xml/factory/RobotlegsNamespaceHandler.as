@@ -1,9 +1,9 @@
-package org.robotlegs.xml
+package org.robotlegs.spring.ioc.xml.factory
 {
 	import org.as3commons.lang.StringUtils;
-	import org.robotlegs.robotlegs_spring_actionscript;
-	import org.robotlegs.xml.parser.MapSignalNodeParser;
-	import org.robotlegs.xml.parser.MapViewNodeParser;
+	import org.robotlegs.spring.robotlegs_spring_actionscript;
+	import org.robotlegs.spring.ioc.xml.factory.parser.MapSignalNodeParser;
+	import org.robotlegs.spring.ioc.xml.factory.parser.MapViewNodeParser;
 	import org.springextensions.actionscript.ioc.IObjectDefinition;
 	import org.springextensions.actionscript.ioc.factory.config.RuntimeObjectReference;
 	import org.springextensions.actionscript.ioc.factory.xml.NamespaceHandlerSupport;

@@ -1,4 +1,4 @@
-package org.robotlegs.base
+package org.robotlegs.spring.mapper
 {
 	import org.as3commons.lang.Assert;
 	import org.as3commons.logging.ILogger;
@@ -14,7 +14,7 @@ package org.robotlegs.base
 	 * @author Denis Borisenko
 	 * 
 	 */
-	public class SignalCommandMapper implements IContextMapper
+	public class SignalCommandMapper extends AbstractContextMapper
 	{
 		//--------------------------------------------------------------------------
 		//  Logger
@@ -33,21 +33,6 @@ package org.robotlegs.base
 		public var commandClass:Class;
 		public var oneShot:Boolean = false;
 		public var startup:Boolean = false;
-		
-		//--------------------------------------------------------------------------
-		//  IApplicationContextAware implementation
-		//--------------------------------------------------------------------------
-			
-		private var _applicationContext:IApplicationContext;
-		public function get applicationContext():IApplicationContext
-		{
-			return _applicationContext;
-		}
-		public function set applicationContext(value:IApplicationContext):void
-		{
-			_applicationContext = value;
-			map();
-		}
 		
 		//--------------------------------------------------------------------------
 		//  Constructor
@@ -74,29 +59,7 @@ package org.robotlegs.base
 		//  map
 		//--------------------------------------------------------------------------
 		
-		protected function getObjectFromContext(clazz:Class):Object
-		{
-			var result:Object;
-			var obj:Object = applicationContext.getObjectsOfType(clazz);
-			if (obj is clazz)
-			{
-				result = obj;
-			}
-			else 
-			{
-				for each (var item:Object in obj)
-				{
-					if (item is clazz)
-					{
-						result = item;
-						break;
-					}
-				}
-			}
-			return result;
-		}
-		
-		public function map():void
+		override public function map():void
 		{
 			if (!mapped)
 			{

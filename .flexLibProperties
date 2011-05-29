@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="org.robotlegs.adapters.SpringActionscriptInjector"/>
-    <classEntry path="org.robotlegs.base.MediatorMapper"/>
-    <classEntry path="org.robotlegs.base.SignalCommandMapper"/>
-    <classEntry path="org.robotlegs.mvcs.SpringSignalContext"/>
-    <classEntry path="org.robotlegs.xml.RobotlegsElementsPreprocessor"/>
-    <classEntry path="org.robotlegs.xml.RobotlegsNamespaceHandler"/>
-    <classEntry path="org.robotlegs.xml.parser.MapSignalNodeParser"/>
-    <classEntry path="org.robotlegs.xml.parser.MapViewNodeParser"/>
-    <classEntry path="org.robotlegs.base.IContextMapper"/>
-    <classEntry path="org.robotlegs.xml.parser.AbstractMapperNodeParser"/>
+    <classEntry path="org.robotlegs.spring.injector.SpringActionscriptInjector"/>
+    <classEntry path="org.robotlegs.spring.mapper.MediatorMapper"/>
+    <classEntry path="org.robotlegs.spring.mapper.SignalCommandMapper"/>
+    <classEntry path="org.robotlegs.spring.context.SpringSignalContext"/>
+    <classEntry path="org.robotlegs.spring.ioc.xml.factory.RobotlegsElementsPreprocessor"/>
+    <classEntry path="org.robotlegs.spring.ioc.xml.factory.RobotlegsNamespaceHandler"/>
+    <classEntry path="org.robotlegs.spring.ioc.xml.factory.parser.MapSignalNodeParser"/>
+    <classEntry path="org.robotlegs.spring.ioc.xml.factory.parser.MapViewNodeParser"/>
+    <classEntry path="org.robotlegs.spring.mapper.AbstractContextMapper"/>
+    <classEntry path="org.robotlegs.spring.ioc.xml.factory.parser.AbstractMapperNodeParser"/>
+    <classEntry path="org.robotlegs.spring.ioc.autowire.IgnoreErrorAutowireProcessor"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

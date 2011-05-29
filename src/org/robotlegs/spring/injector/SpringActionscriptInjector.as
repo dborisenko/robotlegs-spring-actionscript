@@ -1,4 +1,4 @@
-package org.robotlegs.adapters
+package org.robotlegs.spring.injector
 {
 	import flash.errors.IllegalOperationError;
 	import flash.system.ApplicationDomain;
@@ -10,11 +10,13 @@ package org.robotlegs.adapters
 	import org.as3commons.logging.ILogger;
 	import org.as3commons.logging.LoggerFactory;
 	import org.robotlegs.core.IInjector;
+	import org.robotlegs.spring.ioc.autowire.IgnoreErrorAutowireProcessor;
 	import org.springextensions.actionscript.context.support.AbstractApplicationContext;
 	import org.springextensions.actionscript.context.support.XMLApplicationContext;
 	import org.springextensions.actionscript.ioc.IObjectDefinition;
 	import org.springextensions.actionscript.ioc.ObjectDefinition;
 	import org.springextensions.actionscript.ioc.ObjectDefinitionScope;
+	import org.springextensions.actionscript.ioc.factory.IObjectFactory;
 	import org.springextensions.actionscript.ioc.factory.support.AbstractObjectFactory;
 	import org.springextensions.actionscript.ioc.factory.support.IObjectDefinitionRegistry;
 	import org.springextensions.actionscript.ioc.factory.support.ObjectDefinitionBuilder;
@@ -100,7 +102,12 @@ package org.robotlegs.adapters
 		
 		public function injectInto(target:Object):void
 		{
-			springContext.wire(target);
+			var currentFactory:IObjectFactory = springContext;
+			while (currentFactory)
+			{
+				currentFactory.wire(target);
+				currentFactory = currentFactory.parent;
+			}
 		}
 		
 		//--------------------------------------------------------------------------
@@ -110,7 +117,7 @@ package org.robotlegs.adapters
 		public function instantiate(clazz:Class):*
 		{
 			var instance:Object = ClassUtils.newInstance(clazz);
-//			injectInto(instance);
+			injectInto(instance);
 			return instance;
 		}
 		
@@ -124,6 +131,7 @@ package org.robotlegs.adapters
 			var context:AbstractApplicationContext = new XMLApplicationContext();
 			context.parent = springContext;
 			context.registerSingleton(getName(IInjector), this);
+			context.autowireProcessor = new IgnoreErrorAutowireProcessor(context);
 			var injector:SpringActionscriptInjector = new SpringActionscriptInjector(context);
 			return injector;
 		}

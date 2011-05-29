@@ -1,4 +1,4 @@
-package org.robotlegs.xml.parser
+package org.robotlegs.spring.ioc.xml.factory.parser
 {
 	import mx.rpc.AbstractOperation;
 	import mx.utils.StringUtil;
@@ -8,10 +8,10 @@ package org.robotlegs.xml.parser
 	import org.as3commons.lang.IllegalArgumentError;
 	import org.as3commons.lang.StringUtils;
 	import org.osflash.signals.Signal;
-	import org.robotlegs.base.IContextMapper;
-	import org.robotlegs.base.SignalCommandMapper;
+	import org.robotlegs.spring.mapper.AbstractContextMapper;
+	import org.robotlegs.spring.mapper.SignalCommandMapper;
 	import org.robotlegs.core.ISignalCommandMap;
-	import org.robotlegs.xml.RobotlegsNamespaceHandler;
+	import org.robotlegs.spring.ioc.xml.factory.RobotlegsNamespaceHandler;
 	import org.springextensions.actionscript.context.IApplicationContext;
 	import org.springextensions.actionscript.context.IApplicationContextAware;
 	import org.springextensions.actionscript.ioc.IObjectDefinition;
@@ -31,7 +31,7 @@ package org.robotlegs.xml.parser
 		{
 		}
 		
-		override protected function buildMapper(node:XML, context:XMLObjectDefinitionsParser):IContextMapper 
+		override protected function buildMapper(node:XML, context:XMLObjectDefinitionsParser):AbstractContextMapper 
 		{
 			
 			var signalOrSignalClass:Object;
