@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="Main.mxml" projectUUID="8d26afbf-7c2d-4321-8283-b7bbb8260bcf" version="10">
-  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="true" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
-    <compilerSourcePath/>
+<actionScriptProperties analytics="false" mainApplicationPath="MainBootstrap.mxml" projectUUID="8d26afbf-7c2d-4321-8283-b7bbb8260bcf" version="10">
+  <compiler additionalCompilerArguments="-locale en_US -load-config+=springas-controller.config -load-config+=springas-model.config -load-config+=springas-signal-action.config -load-config+=springas-signal-notification.config -load-config+=springas-view.config" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="true" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath>
+      <compilerSourcePathEntry kind="1" linkType="1" path="config"/>
+    </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
         <excludedEntries>
@@ -14,7 +16,7 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="Main.mxml">
+    <application path="MainBootstrap.mxml">
       <airExcludes/>
     </application>
   </applications>

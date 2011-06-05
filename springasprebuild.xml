@@ -1,0 +1,30 @@
+<project name="prebuild-class-includer" default="default">
+	
+	<description>
+		Extracts all the class paths from a Spring Actionscript configuration file and
+		dumps them in a config file that can be added with a compiler switch
+		(i.e. -load-config+=custom.config)
+	</description>
+	
+	<property name="src.config" value="config/springas"/>
+	<property name="dest.config" value="config"/>
+
+	
+	<target name="default" description="description">
+	
+		<xslt in="${src.config}/controller.xml" out="${dest.config}/springas-controller.config"
+			style="xslt/springasconfig.xsl" reloadstylesheet="false"></xslt>
+			
+		<xslt in="${src.config}/model.xml" out="${dest.config}/springas-model.config"
+			style="xslt/springasconfig.xsl" reloadstylesheet="false"></xslt>
+			
+		<xslt in="${src.config}/signal-action.xml" out="${dest.config}/springas-signal-action.config"
+			style="xslt/robotlegsspringasconfig.xsl" reloadstylesheet="false"></xslt>
+		
+		<xslt in="${src.config}/signal-notification.xml" out="${dest.config}/springas-signal-notification.config"
+			style="xslt/robotlegsspringasconfig.xsl" reloadstylesheet="false"></xslt>
+			
+		<xslt in="${src.config}/view.xml" out="${dest.config}/springas-view.config"
+			style="xslt/robotlegsspringasconfig.xsl" reloadstylesheet="false"></xslt>
+	</target>
+</project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects xmlns="http://www.springactionscript.org/schema/objects"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springactionscript.org/schema/objects
+						http://www.springactionscript.org/schema/objects/spring-actionscript-objects-1.0.xsd">
+
+	<object id="cafeModel" class="com.dborisenko.robotlegs.spring.cafe.model.CafeModel">
+		<property name="foodList">
+			<array-collection>
+				<value>
+					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
+						<constructor-arg value="apple" />
+						<constructor-arg value="0.5" />
+					</object>
+				</value>
+				<value>
+					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
+						<constructor-arg value="burger" />
+						<constructor-arg value="1.75" />
+					</object>
+				</value>
+				<value>
+					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
+						<constructor-arg value="coffee" />
+						<constructor-arg value="0.25" />
+					</object>
+				</value>
+				<value>
+					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
+						<constructor-arg value="hotdog" />
+						<constructor-arg value="1.0" />
+					</object>
+				</value>
+				<value>
+					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
+						<constructor-arg value="pizza" />
+						<constructor-arg value="4.0" />
+					</object>
+				</value>
+				<value>
+					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
+						<constructor-arg value="rare FUGU" />
+						<constructor-arg value="1235.0" />
+					</object>
+				</value>
+			</array-collection>
+		</property>
+	</object>
+
+</objects>

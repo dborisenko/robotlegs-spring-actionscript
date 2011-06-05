@@ -1,6 +1,6 @@
 package com.dborisenko.robotlegs.spring.cafe.model
 {
-	import mx.collections.ArrayCollection;
+	import mx.collections.IList;
 
 	/**
 	 * 
@@ -10,10 +10,10 @@ package com.dborisenko.robotlegs.spring.cafe.model
 	public interface ICafeModel
 	{
 		[ArrayElementType("com.dborisenko.robotlegs.spring.cafe.data.Food")]
-		function get foodList():ArrayCollection;
+		function get foodList():IList;
 		
 		[ArrayElementType("com.dborisenko.robotlegs.spring.cafe.data.FoodOrder")]
-		function get orderedFood():ArrayCollection;
+		function get orderedFood():IList;
 		
 		function set orderPrice(value:Number):void;
 		function get orderPrice():Number;
