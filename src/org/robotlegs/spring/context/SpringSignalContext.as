@@ -97,7 +97,6 @@ package org.robotlegs.spring.context
 		}
 		public function set config(value:Object):void
 		{
-			_configs.addItem(value);
 			addConfig(value);
 		}
 		
@@ -107,14 +106,21 @@ package org.robotlegs.spring.context
 		
 		public function addConfig(config:Object):void
 		{
+			if (_configs.contains(config))
+			{
+				return;
+			}
+			
 			_isConfigurable = true;
 			if (config is XML)
 			{
 				springContext.addConfig(config as XML);
+				_configs.addItem(config);
 			}
 			else if (config is Class)
 			{
 				springContext.addEmbeddedConfig(config as Class);
+				_configs.addItem(config);
 			}
 			else if (config is String)
 			{
@@ -127,6 +133,7 @@ package org.robotlegs.spring.context
 				{
 					springContext.addConfigLocation(config as String);
 				}
+				_configs.addItem(config);
 			}
 			else if (config is ArrayCollection)
 			{
@@ -194,6 +201,7 @@ package org.robotlegs.spring.context
 		protected function doStartup():void
 		{
 			super.startup();
+			injector.mapSingleton(StartupSignal);
 			injector.mapValue(IContext, this);
 			injector.injectInto(this);
 			startupSignal.dispatch();

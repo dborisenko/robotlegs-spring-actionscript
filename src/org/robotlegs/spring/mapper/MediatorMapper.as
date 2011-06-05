@@ -1,6 +1,8 @@
 package org.robotlegs.spring.mapper
 {
 	import org.as3commons.lang.Assert;
+	import org.as3commons.logging.ILogger;
+	import org.as3commons.logging.LoggerFactory;
 	import org.robotlegs.core.IMediatorMap;
 	import org.springextensions.actionscript.context.IApplicationContext;
 	import org.springextensions.actionscript.context.IApplicationContextAware;
@@ -12,6 +14,12 @@ package org.robotlegs.spring.mapper
 	 */
 	public class MediatorMapper extends AbstractContextMapper
 	{
+		//--------------------------------------------------------------------------
+		//  Logger
+		//--------------------------------------------------------------------------
+		
+		protected var logger:ILogger = LoggerFactory.getClassLogger(AbstractContextMapper);
+		
 		//--------------------------------------------------------------------------
 		//  Variables
 		//--------------------------------------------------------------------------
@@ -57,6 +65,7 @@ package org.robotlegs.spring.mapper
 					throw new Error("Cannot receive object of type [IMediatorMap] from context");
 				}
 				
+				logger.debug("Mapping view [" + viewClass + "] as [" + injectViewAs + "] with mediator [" + mediatorClass + "]");
 				mediatorMap.mapView(viewClass, mediatorClass, injectViewAs, autoCreate, autoRemove);
 			}
 		}

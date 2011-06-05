@@ -51,7 +51,6 @@ package org.robotlegs.spring.mapper
 		public function set applicationContext(value:IApplicationContext):void
 		{
 			_applicationContext = value;
-			map();
 		}
 				
 	}
