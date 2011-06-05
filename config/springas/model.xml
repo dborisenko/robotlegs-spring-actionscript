@@ -11,36 +11,42 @@
 					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
 						<constructor-arg value="apple" />
 						<constructor-arg value="0.5" />
+						<constructor-arg value="icons/apple.png" />
 					</object>
 				</value>
 				<value>
 					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
 						<constructor-arg value="burger" />
 						<constructor-arg value="1.75" />
+						<constructor-arg value="icons/burger.png" />
 					</object>
 				</value>
 				<value>
 					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
 						<constructor-arg value="coffee" />
 						<constructor-arg value="0.25" />
+						<constructor-arg value="icons/coffee.png" />
 					</object>
 				</value>
 				<value>
 					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
 						<constructor-arg value="hotdog" />
 						<constructor-arg value="1.0" />
+						<constructor-arg value="icons/hotdog.png" />
 					</object>
 				</value>
 				<value>
 					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
 						<constructor-arg value="pizza" />
 						<constructor-arg value="4.0" />
+						<constructor-arg value="icons/pizza.png" />
 					</object>
 				</value>
 				<value>
 					<object class="com.dborisenko.robotlegs.spring.cafe.data.Food">
 						<constructor-arg value="rare FUGU" />
 						<constructor-arg value="1235.0" />
+						<constructor-arg value="icons/sushi.png" />
 					</object>
 				</value>
 			</array-collection>

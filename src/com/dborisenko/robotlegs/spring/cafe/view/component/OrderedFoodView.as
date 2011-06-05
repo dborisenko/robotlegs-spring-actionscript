@@ -61,7 +61,7 @@ package com.dborisenko.robotlegs.spring.cafe.view.component
 		//  orderPrice
 		//--------------------------------------------------------------------------
 		
-		private var _orderPrice:Number;
+		private var _orderPrice:Number = 0.0;
 		
 		[Bindable]
 		public function set orderPrice(value:Number):void

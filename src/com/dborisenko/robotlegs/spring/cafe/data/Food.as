@@ -12,6 +12,21 @@ package com.dborisenko.robotlegs.spring.cafe.data
 	public class Food
 	{
 		//--------------------------------------------------------------------------
+		//  iconSource
+		//--------------------------------------------------------------------------
+		
+		private var _iconSource:Object;
+		
+		public function get iconSource():Object
+		{
+			return _iconSource;
+		}
+		public function set iconSource(value:Object):void
+		{
+			_iconSource = value;
+		}
+		
+		//--------------------------------------------------------------------------
 		//  name
 		//--------------------------------------------------------------------------
 		
@@ -47,10 +62,11 @@ package com.dborisenko.robotlegs.spring.cafe.data
 		//  Constructor
 		//--------------------------------------------------------------------------
 		
-		public function Food(name:String, cost:Number)
+		public function Food(name:String, cost:Number, iconSource:Object=null)
 		{
 			this.name = name;
 			this.cost = cost;
+			this.iconSource = iconSource;
 		}
 	}
 }

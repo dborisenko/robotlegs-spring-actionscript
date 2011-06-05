@@ -8,11 +8,13 @@
 	</fx:Metadata>
 	
 	<s:layout>
-		<s:HorizontalLayout />
+		<s:HorizontalLayout verticalAlign="middle" />
 	</s:layout>
 	
-	<s:DropDownList id="foodList" dataProvider="{hostComponent.food}" width="100%" />
-	<s:Button id="orderButton" label="Order" />
+	<s:DropDownList id="foodList" dataProvider="{hostComponent.food}" width="100%" 
+					itemRenderer="com.dborisenko.robotlegs.spring.cafe.view.skin.itemRenderer.FoodItemRenderer" 
+					labelField="name"/>
+	<s:Button id="orderButton" label="Order" enabled="{foodList.selectedItem != null}" />
 	
 	<!-- SkinParts
 	name=foodList, type=spark.components.supportClasses.ListBase, required=false

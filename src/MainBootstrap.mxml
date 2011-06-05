@@ -9,8 +9,9 @@
 	
 	<fx:Declarations>
 		<context:SpringSignalContext contextView="{cafeView}" 
-									 config="{[modelEmbedContext, viewEmbedContext, 
-									 'springas/controller.xml', 'springas/signal-action.xml', 'springas/signal-notification.xml']}" />
+									 config="{[modelEmbedContext, controllerEmbedContext, 
+									 'springas/signal-action.xml', 'springas/signal-notification.xml',
+									 'springas/view.xml']}" />
 	</fx:Declarations>
 			
 	<fx:Script>
@@ -25,8 +26,8 @@
 			public var modelEmbedContext:Class;
 			
 			[Bindable]
-			[Embed(source="springas/view.xml", mimeType ="application/octet-stream")]
-			public var viewEmbedContext:Class;
+			[Embed(source="springas/controller.xml", mimeType ="application/octet-stream")]
+			public var controllerEmbedContext:Class;
 			
 		]]>
 	</fx:Script>
