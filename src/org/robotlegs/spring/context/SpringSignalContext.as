@@ -6,10 +6,13 @@ package org.robotlegs.spring.context
 	import mx.collections.ArrayCollection;
 	import mx.utils.StringUtil;
 	
-	import org.robotlegs.spring.injector.SpringActionscriptInjector;
+	import org.robotlegs.core.IContext;
 	import org.robotlegs.core.IInjector;
+	import org.robotlegs.mvcs.SignalContext;
+	import org.robotlegs.spring.injector.SpringActionscriptInjector;
 	import org.robotlegs.spring.ioc.autowire.IgnoreErrorAutowireProcessor;
 	import org.robotlegs.spring.ioc.xml.factory.RobotlegsNamespaceHandler;
+	import org.robotlegs.spring.signal.StartupSignal;
 	import org.springextensions.actionscript.context.IConfigurableApplicationContext;
 	import org.springextensions.actionscript.context.support.AbstractApplicationContext;
 	import org.springextensions.actionscript.context.support.FlexXMLApplicationContext;
@@ -17,7 +20,6 @@ package org.robotlegs.spring.context
 	import org.springextensions.actionscript.context.support.XMLApplicationContext;
 	
 	import spark.components.mediaClasses.VolumeBar;
-	import org.robotlegs.mvcs.SignalContext;
 	
 	/**
 	 * 
@@ -40,6 +42,13 @@ package org.robotlegs.spring.context
 		protected var _springContext:XMLApplicationContext;
 		protected var _configs:ArrayCollection = new ArrayCollection();
 		protected var _isConfigurable:Boolean = false;
+		
+		//--------------------------------------------------------------------------
+		//  Injections
+		//--------------------------------------------------------------------------
+		
+		[Inject]
+		public var startupSignal:StartupSignal;
 		
 		//--------------------------------------------------------------------------
 		//  springContextType
@@ -185,6 +194,9 @@ package org.robotlegs.spring.context
 		protected function doStartup():void
 		{
 			super.startup();
+			injector.mapValue(IContext, this);
+			injector.injectInto(this);
+			startupSignal.dispatch();
 		}
 		
 		//--------------------------------------------------------------------------
