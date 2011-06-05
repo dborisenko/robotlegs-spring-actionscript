@@ -18,7 +18,7 @@ package org.robotlegs.spring.mapper
 		//  Logger
 		//--------------------------------------------------------------------------
 		
-		protected var logger:ILogger = LoggerFactory.getClassLogger(AbstractContextMapper);
+		private var logger:ILogger = LoggerFactory.getClassLogger(AbstractContextMapper);
 		
 		//--------------------------------------------------------------------------
 		//  Variables

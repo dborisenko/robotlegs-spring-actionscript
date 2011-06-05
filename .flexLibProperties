@@ -13,6 +13,7 @@
     <classEntry path="org.robotlegs.spring.ioc.xml.factory.parser.AbstractMapperNodeParser"/>
     <classEntry path="org.robotlegs.spring.ioc.autowire.IgnoreErrorAutowireProcessor"/>
     <classEntry path="org.robotlegs.spring.signal.StartupSignal"/>
+    <classEntry path="org.robotlegs.spring.base.AfterwardMediatorMap"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

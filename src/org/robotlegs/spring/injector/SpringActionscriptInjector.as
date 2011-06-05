@@ -32,7 +32,7 @@ package org.robotlegs.spring.injector
 		//  Logger
 		//--------------------------------------------------------------------------
 		
-		protected var logger:ILogger = LoggerFactory.getClassLogger(SpringActionscriptInjector);
+		private var logger:ILogger = LoggerFactory.getClassLogger(SpringActionscriptInjector);
 		
 		//--------------------------------------------------------------------------
 		//  Variables

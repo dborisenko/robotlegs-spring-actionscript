@@ -20,7 +20,7 @@ package org.robotlegs.spring.mapper
 		//  Logger
 		//--------------------------------------------------------------------------
 		
-		protected var logger:ILogger = LoggerFactory.getClassLogger(SignalCommandMapper);
+		private var logger:ILogger = LoggerFactory.getClassLogger(SignalCommandMapper);
 		
 		//--------------------------------------------------------------------------
 		//  Variables

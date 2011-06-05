@@ -15,7 +15,7 @@ package org.robotlegs.spring.ioc.autowire
 	 */
 	public class IgnoreErrorAutowireProcessor extends DefaultAutowireProcessor
 	{
-		protected var logger:ILogger = LoggerFactory.getClassLogger(IgnoreErrorAutowireProcessor);
+		private var logger:ILogger = LoggerFactory.getClassLogger(IgnoreErrorAutowireProcessor);
 		
 		public function IgnoreErrorAutowireProcessor(objectFactory:IObjectFactory)
 		{

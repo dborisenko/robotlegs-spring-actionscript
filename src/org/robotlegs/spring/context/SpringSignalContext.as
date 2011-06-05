@@ -8,7 +8,9 @@ package org.robotlegs.spring.context
 	
 	import org.robotlegs.core.IContext;
 	import org.robotlegs.core.IInjector;
+	import org.robotlegs.core.IMediatorMap;
 	import org.robotlegs.mvcs.SignalContext;
+	import org.robotlegs.spring.base.AfterwardMediatorMap;
 	import org.robotlegs.spring.injector.SpringActionscriptInjector;
 	import org.robotlegs.spring.ioc.autowire.IgnoreErrorAutowireProcessor;
 	import org.robotlegs.spring.ioc.xml.factory.RobotlegsNamespaceHandler;
@@ -42,6 +44,8 @@ package org.robotlegs.spring.context
 		protected var _springContext:XMLApplicationContext;
 		protected var _configs:ArrayCollection = new ArrayCollection();
 		protected var _isConfigurable:Boolean = false;
+		
+		public var mapExistedView:Boolean = true;
 		
 		//--------------------------------------------------------------------------
 		//  Injections
@@ -171,6 +175,11 @@ package org.robotlegs.spring.context
 			var injector:IInjector = new SpringActionscriptInjector(springContext);
 			injector.applicationDomain = getApplicationDomainFromContextView();
 			return injector;
+		}
+		
+		override protected function get mediatorMap():IMediatorMap
+		{
+			return _mediatorMap ||= new AfterwardMediatorMap(contextView, createChildInjector(), reflector, mapExistedView);
 		}
 		
 		//--------------------------------------------------------------------------
