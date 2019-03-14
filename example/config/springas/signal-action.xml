@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects xmlns="http://www.springactionscript.org/schema/objects"
+	xmlns:rsas="https://github.com/dborisenko/robotlegs-spring-actionscript/raw/master/schema/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springactionscript.org/schema/objects
+						http://www.springactionscript.org/schema/objects/spring-actionscript-objects-1.0.xsd
+						https://github.com/dborisenko/robotlegs-spring-actionscript/raw/master/schema/
+						https://github.com/dborisenko/robotlegs-spring-actionscript/raw/master/schema/robotlegs-spring-actionscript-1.0.xsd">
+
+	<rsas:map-signal signal-class="com.dborisenko.robotlegs.spring.cafe.signal.action.OrderFoodSignal"
+		command-class="com.dborisenko.robotlegs.spring.cafe.command.OrderFoodCommand" />
+		
+	<rsas:map-signal signal-class="com.dborisenko.robotlegs.spring.cafe.signal.action.CancelFoodOrderSignal"
+		command-class="com.dborisenko.robotlegs.spring.cafe.command.CancelFoodOrderCommand" />
+		
+</objects>

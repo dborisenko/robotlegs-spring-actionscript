@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.dborisenko.robotlegs.spring.cafe.view.component.OrderedFoodView")]
+	</fx:Metadata>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:HGroup width="100%" paddingTop="10" paddingBottom="3" paddingLeft="5">
+		<s:Rect width="56"/>
+		<s:Label width="100%" textAlign="center" text="Name" fontWeight="bold"/>
+		<s:Label width="100%" textAlign="center" text="Quantity" fontWeight="bold" />
+		<s:Label width="100%" textAlign="center" text="Unit Cost" fontWeight="bold" />
+	</s:HGroup>
+	
+	<s:List id="orderedFoodList" dataProvider="{hostComponent.orderedFood}"
+			itemRenderer="com.dborisenko.robotlegs.spring.cafe.view.skin.itemRenderer.FoodOrderItemRenderer"
+			width="100%" height="100%">
+		
+	</s:List>
+	
+	<s:HGroup width="100%" horizontalAlign="right" verticalAlign="middle">
+		<s:Label text="Total price:" />
+		<s:Label id="orderPriceDisplay" text="{hostComponent.orderPrice}$" width="70" />
+		<s:Button id="cancelOrderButton" label="Cancel order" enabled="{orderedFoodList.selectedItem != null}" />
+	</s:HGroup>
+	
+	<!-- SkinParts
+	name=orderedFoodList, type=spark.components.supportClasses.ListBase, required=false
+	name=cancelOrderButton, type=spark.components.supportClasses.ButtonBase, required=false
+	-->
+</s:Skin>

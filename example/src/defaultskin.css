@@ -1,0 +1,15 @@
+/* CSS file */
+@namespace component "com.dborisenko.robotlegs.spring.cafe.view.component.*";
+
+component|CafeView
+{
+	skinClass: ClassReference("com.dborisenko.robotlegs.spring.cafe.view.skin.CafeSkin");
+}
+component|FoodControlsView
+{
+	skinClass: ClassReference("com.dborisenko.robotlegs.spring.cafe.view.skin.FoodControlsSkin")
+}
+component|OrderedFoodView
+{
+	skinClass: ClassReference("com.dborisenko.robotlegs.spring.cafe.view.skin.OrderedFoodSkin")
+}

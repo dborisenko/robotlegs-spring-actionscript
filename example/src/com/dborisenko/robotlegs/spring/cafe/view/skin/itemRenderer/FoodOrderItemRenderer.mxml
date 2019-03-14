@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true">
+	
+	<s:layout>
+		<s:HorizontalLayout paddingTop="3" paddingBottom="3" verticalAlign="middle" paddingLeft="5" />
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.dborisenko.robotlegs.spring.cafe.data.FoodOrder;
+		]]>
+	</fx:Script>
+	
+	<s:Image width="56" height="56" source="{FoodOrder(data).food.iconSource}" />
+	<s:Label width="100%" textAlign="center" text="{FoodOrder(data).food.name}"/>
+	<s:Label width="100%" textAlign="center" text="{FoodOrder(data).quantity}" />
+	<s:Label width="100%" textAlign="center" text="{(FoodOrder(data).quantity * FoodOrder(data).food.cost).toFixed(2)}$" />
+	
+</s:ItemRenderer>
